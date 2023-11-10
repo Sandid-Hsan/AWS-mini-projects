@@ -28,7 +28,7 @@ a solution with automatic scaling that doesn't require time to set up or operate
 The components are too tightly coupled. So if one API call fails, then the next few ones 
 don't get completed. This causes inconsistency with the orders data and causes 
 headaches for the customers.
-Theapp has pretty spiky demand. When launching online sales or sending out coupon codes,
+The app has pretty spiky demand. When launching online sales or sending out coupon codes,
 there is like, huge traffic. But then, at other times, there is essentially zero demand
 For the monitoring and logging to be easy to put in place. And ideally, everything have
 to use the same logging system.
@@ -60,3 +60,24 @@ For the database component, the customer is storing  the data in a MySQL databas
 for its efficiency with relationaldatabases. But since there is no complex queries and jointed tables we will choose the 
 noSQL option **DynamoDB** as we will also be using **AWS Lambda**.
 
+####Decoupling components:
+Our customer currently uses a synchronous web application to host the orders service, which is causing various issues—for 
+example, the code is too tightly coupled with downstream API calls. So we suggest that they move to an **event-driven architecture** 
+to solve this problem.
+
+**Event-driven architectures** have three key components: **event producers** , **event routers** , and **event consumers**. 
+A producer publishes an event to the router, which filters and pushes the events to consumers. 
+Producer services and consumer services are decoupled, which means that they can be scaled, updated, and deployed 
+independently. 
+As event-driven architectures we have two choices. To either go with **Amazon EventBridge** solution or **Amazon SNS**.
+To satisfy our customer need in cost optimization we will choose Amazon SNS since it is more suitable for our architecture 
+and because it’s simple to use and supports a straightforward way to send messages between application components. 
+
+Also we will be implementing **Amazon SQS** in our architecture since in the online sales period the system gets overwhelmed 
+with requests which can lead to loosing requests.For that we have to add a messaging queue between **Amazon API Gateway** and 
+**Amazon Lambda**. 
+
+###Centralized monitoring and logging:
+
+We won't have to add another service for monitoring or logging since our serverless solutions all tend to be integrated 
+with **Amazon CloudWatch** and **Amazon CloudWatch Logs** since they meet the need for centralized application logging.
