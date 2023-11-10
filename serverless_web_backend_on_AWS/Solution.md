@@ -51,9 +51,12 @@ As the customer required managed scaling for compute then we will be proceeding 
 the serverless category and our service will be **AWS Lambda** for the compute backend.
 
 Now we have to expose the backend lambda function and for taht we will integrate 
-Amazon API Gateway, thus providing a way to expose the backend servie without exposing 
+**Amazon API Gateway**, thus providing a way to expose the backend servie without exposing 
 to the open internet intecepating if the customer decieds to add authentication to 
 API Gateway to secure it further.
 	
 #### Database component:
-For the database component
+For the database component, the customer is storing  the data in a MySQL database so we should go with **AuroraDB** option 
+for its efficiency with relationaldatabases. But since there is no complex queries and jointed tables we will choose the 
+noSQL option **DynamoDB** as we will also be using **AWS Lambda**.
+
