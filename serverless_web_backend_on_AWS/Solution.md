@@ -1,4 +1,4 @@
-# Architecting the solution steps:
+# Architecting the solution:
 In this solution we will provide an ecommerce company with a backend web service on AWS.
 We will be taking in consideration the customer requirements and the problems that they are
 trying to solve with this migration.
@@ -60,7 +60,7 @@ For the database component, the customer is storing  the data in a MySQL databas
 for its efficiency with relationaldatabases. But since there is no complex queries and jointed tables we will choose the 
 noSQL option **DynamoDB** as we will also be using **AWS Lambda**.
 
-####Decoupling components:
+#### Decoupling components:
 Our customer currently uses a synchronous web application to host the orders service, which is causing various issues—for 
 example, the code is too tightly coupled with downstream API calls. So we suggest that they move to an **event-driven architecture** 
 to solve this problem.
@@ -77,7 +77,7 @@ Also we will be implementing **Amazon SQS** in our architecture since in the onl
 with requests which can lead to loosing requests.For that we have to add a messaging queue between **Amazon API Gateway** and 
 **Amazon Lambda**. 
 
-###Centralized monitoring and logging:
+#### Centralized monitoring and logging:
 
 We won't have to add another service for monitoring or logging since our serverless solutions all tend to be integrated 
 with **Amazon CloudWatch** and **Amazon CloudWatch Logs** since they meet the need for centralized application logging.
