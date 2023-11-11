@@ -84,4 +84,4 @@ with **Amazon CloudWatch** and **Amazon CloudWatch Logs** since they meet the ne
 
 #### Solution Topologie: 
 
-![image](architecture.png)
+![image](/home/Sandid/Desktop/AWS-mini-projects/serverless_web_backend_on_AWS/architecture.png)
