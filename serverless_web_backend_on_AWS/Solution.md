@@ -84,4 +84,4 @@ with **Amazon CloudWatch** and **Amazon CloudWatch Logs** since they meet the ne
 
 #### Solution Topologie: 
 
-![image](~/Desktop/architecture.png "Serverless Backend solution")
+![image](architecture.png "Serverless Backend solution")
