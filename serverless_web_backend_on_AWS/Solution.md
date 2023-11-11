@@ -81,3 +81,7 @@ with requests which can lead to loosing requests.For that we have to add a messa
 
 We won't have to add another service for monitoring or logging since our serverless solutions all tend to be integrated 
 with **Amazon CloudWatch** and **Amazon CloudWatch Logs** since they meet the need for centralized application logging.
+
+#### Solution Topologie: 
+
+![alt text](architecture.png "Serverless Backend solution")
