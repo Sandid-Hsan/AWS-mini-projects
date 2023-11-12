@@ -105,8 +105,7 @@ have low latency requirements. Firehose is designed to reliably load streaming d
 HTTP endpoints. It is a fully managed service that automatically scales.
 
 In order to interact with Amazon kinesis we need to perform Kinesis API calls such as PutRecord. Our customer has a JavaScript library that 
-they want to use and the JS library is looking to make HTTPS POST. And for this we should use **Amazon API Gateway** to send data to our Kinesis
-stream. 
+they want to use and the JS library is looking to make HTTPS POST. And for this we should use **Amazon API Gateway** to send data to our Kinesis stream. 
 
 #### Accessing the ingested data:
 
@@ -118,9 +117,19 @@ objects, unless we are running something else to aggregate the data, which we ar
 data using big data frameworks. And our customer asked to keep the architecture the most minimal possible because of reduced staff, cost 
 and maintenance. That's why we won't proceed with these two services.
 
-**Amazon Athena** is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so 
-there is no infrastructure to manage, and you pay only for the queries that you run. The only problem that we can face here is that Athena 
-needs a serializer/deserializer on the table since the customer is using a Javascript library. The developers are  only using the JSON format for
-the data which makes Athena the right choice.
+**Amazon Athena** is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run. The only problem that we can face here is that Athena  needs a serializer/deserializer on the table since the customer is using a Javascript library. The developers are  only using the JSON format for the data which makes Athena the right choice.
+
+#### Visualizing the data:
+
+For data visualization we have multiple choices like **Amazon CloudWatch** , **Amazon QuickSight** , **OpenSearch Service** and
+**Managed Grafana**.
+
++ Amazon CloudWatch offers dashboards and can create alarms and detect anomalous data. It is mostly used by system administrators looking for operational metrics. So We won't proceed with it
+
++ Amazon OpenSearch Service has an issue which is that its cluster comes with storage and processing power and that can make the cost higher than anticipated. It is not an optimal solution for our case.
+
++ Amazon Managed Grafana and Amazon Quicksight can do the job but we will proceed with QuickSight since our customer is already integrating Quicksight as a service so that would provide saving on licensing cost or learning curve as required.
+ 
+ 
 
 
