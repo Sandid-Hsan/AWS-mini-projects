@@ -32,3 +32,29 @@ To summarize the company needs dedicated connectivity to AWS for communication, 
 **AWS Direct Connect** is the shortest path to your AWS resources. While your network traffic is in transit, it remains on the AWS global network and never touches the public internet. This isolation reduces the chance of encountering bottlenecks or unexpected increases in latency. 
 
 **AWS Managed VPN**
+
+We have both AWS Site-to-Site VPN and AWS client VPN.
+
+1. AWS Site-to-Site VPN would give you the permission to access the VPC from your remote network. Site-to-Site VPN supports IPsec VPN connections.
+
+2. AWS Client VPN is a fully managed, remote-access VPN solution that your remote workforce can use to securely access resources within both AWS and your on-premises network. It’s fully elastic, so it automatically scales up or down, based on demand.
+
+**AWS Transit Gateway** 
+AWS Transit Gateway connects your VPCs and on-premises networks through a central hub. This arrangement simplifies your network and minimizes complex peering relationships. Transit Gateway acts as a cloud router—each new connection is made only once.
+
+As you expand globally, inter-Region peering connects transit gateways together through the AWS global network. Your data is automatically encrypted and never travels over the public internet.
+
+#### Running Containers on AWS and NAT Gateways:
+
+The customer needed a solution to host containers on AWS. These containers will be running internal applications that don’t require inbound communication from the internet. However, the applications might require outbound communication to the internet so they can do tasks such as download updates from internet sources. The customer must use their own custom Amazon Machine Image (AMI) for the cluster that hosts the containers, and they must also have SSH access to underlying instances.
+
+For these reasons, we chose Amazon Elastic Container Service **Amazon ECS** as the container orchestration tool and Amazon Elastic Compute Cloud **Amazon EC2** as the launch type.
+
+We also included NAT gateway in the architecture so that private instances could download information from the internet. 
+
+####  Amazon Relational Database Service:
+
+We recommend  that they migrate their on-premises database to Amazon Relational Database Service **Amazon RDS**, and to use a Multi-AZ deployment for high availability. In a Multi-AZ deployment, Amazon RDS automatically creates a primary database (DB) instance and synchronously replicates the data to an instance in a different Availability Zone. When it detects a failure, Amazon RDS automatically fails over to a standby instance without manual intervention. This failover mechanism meets the customer’s need to have a highly available database.
+
+We also suggest that thecustomer use AWS Database Migration Service **Amazon DMS** to migrate data from their on-premises database to Amazon RDS.
+AWS DMS helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, which minimizes the downtime to applications that rely on the database. The AWS DMS can migrate your data to and from widely used commercial and open-source databases.
